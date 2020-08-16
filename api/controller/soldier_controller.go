@@ -1,4 +1,4 @@
-package soldier
+package controller
 
 import (
 	"github.com/gin-gonic/gin"
@@ -10,11 +10,11 @@ import (
 	"time"
 )
 
-type ControllerSoldier struct {
+type SoldierController struct {
 	service.SoldierService
 }
 
-func (sc *ControllerSoldier) CreateSoldier(c *gin.Context) {
+func (sc *SoldierController) CreateSoldier(c *gin.Context) {
 	var response = &baseResponse.BaseResponse{
 		ServerTime:	time.Now(),
 	}
@@ -45,7 +45,7 @@ func (sc *ControllerSoldier) CreateSoldier(c *gin.Context) {
 	}
 }
 
-func (sc *ControllerSoldier) GetSoldier(c *gin.Context) {
+func (sc *SoldierController) GetSoldier(c *gin.Context) {
 	id := util.StrToUint(c.Params.ByName("id"))
 
 	var response = &baseResponse.BaseResponse{
@@ -75,7 +75,7 @@ func (sc *ControllerSoldier) GetSoldier(c *gin.Context) {
 	}
 }
 
-func (sc *ControllerSoldier) UpdateSoldier(c *gin.Context) {
+func (sc *SoldierController) UpdateSoldier(c *gin.Context) {
 	var response = &baseResponse.BaseResponse{
 		ServerTime:	time.Now(),
 	}
@@ -106,7 +106,7 @@ func (sc *ControllerSoldier) UpdateSoldier(c *gin.Context) {
 	}
 }
 
-func (sc *ControllerSoldier) GetAllSoldier(c *gin.Context) {
+func (sc *SoldierController) GetAllSoldier(c *gin.Context) {
 	soldiers, err := sc.SoldierService.GetAllSoldier()
 
 	var response = &baseResponse.BaseResponse{
@@ -127,7 +127,7 @@ func (sc *ControllerSoldier) GetAllSoldier(c *gin.Context) {
 	}
 }
 
-func (sc *ControllerSoldier) DeleteSoldier(c *gin.Context) {
+func (sc *SoldierController) DeleteSoldier(c *gin.Context) {
 	id := util.StrToUint(c.Params.ByName("id"))
 
 	var response = &baseResponse.BaseResponse{

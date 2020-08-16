@@ -17,11 +17,11 @@ func TestRefreshTable(t *testing.T) {
 }
 
 func refreshAllTable() error {
-	err := database.DB.DropTableIfExists(&model.Magazine{}, &model.Gun{}, &model.Soldier{}).Error
+	err := database.DB.DropTableIfExists(&model.Soldier{}).Error
 	if err != nil {
 		return err
 	}
-	err = database.DB.AutoMigrate(&model.Magazine{}, &model.Gun{}, &model.Soldier{}).Error
+	err = database.DB.AutoMigrate(&model.Soldier{}).Error
 	if err != nil {
 		return err
 	}

@@ -1,6 +1,5 @@
 package model
 
-type Gun struct {
-	Name 		string		`json:"name"`
+type MagazinePack struct {
 	Magazines	[]Magazine	`json:"magazines"`
 }
