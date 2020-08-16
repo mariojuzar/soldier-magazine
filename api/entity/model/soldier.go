@@ -1,8 +1,8 @@
 package model
 
 type Soldier struct {
-	ID		uint32	`gorm:"primary_key;auto_increment" json:"id"`
-	Name 	string	`gorm:"size:255;not null" json:"name"`
-	Gun 	Gun		`json:"gun"`
-	GunId	uint32	`gorm:"not null" json:"gun_id"`
+	ID					uint			`gorm:"primary_key;auto_increment" json:"soldier_id"`
+	Name 				string			`gorm:"size:255;not null" json:"soldier_name"`
+	MagazinePacks		MagazinePack	`json:"magazine_packs"`
+	MagazinePacksValue	string			`json:"-"`
 }
