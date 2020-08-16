@@ -10,7 +10,7 @@ import (
 	"testing"
 )
 
-var database service.DatabaseService
+var database service.Database
 
 func TestMain(m *testing.M)  {
 	var err error
@@ -31,10 +31,7 @@ func Databases() {
 	}
 	db.LogMode(true)
 
-	database = service.DatabaseService{DB: db, IsInitialized:true}
+	database = service.Database{DB: db, IsInitialized:true}
 
-	db.AutoMigrate(
-		&model.Magazine{},
-		&model.Gun{},
-		&model.Soldier{})
+	db.AutoMigrate(&model.Soldier{})
 }
