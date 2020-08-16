@@ -2,3 +2,5 @@
 *.iws
 *.iml
 *.ipr
+api/db
+tests/soldier_magazine.db

@@ -5,6 +5,7 @@ import (
 	"github.com/mariojuzar/soldier-magazine/api/configuration"
 	"github.com/mariojuzar/soldier-magazine/api/entity/path"
 	"github.com/mariojuzar/soldier-magazine/api/entity/rest-web/response"
+	"github.com/mariojuzar/soldier-magazine/api/service"
 	"net/http"
 	"time"
 )
@@ -14,6 +15,7 @@ func Run() *gin.Engine {
 	engine.RedirectTrailingSlash = false
 
 	configuration.Initialize()
+	service.Initialize()
 
 	api := engine.Group(path.BaseUrl)
 	{
