@@ -7,24 +7,35 @@ import (
 	"log"
 )
 
-type DatabaseService struct {
+type Database struct {
 	DB            *gorm.DB
 	IsInitialized bool
 }
 
-var databaseService DatabaseService
+type DatabaseService interface {
+	Initialize() error
+}
 
-func Initialize() {
+type databaseService struct {
+
+}
+
+func NewDatabaseService() DatabaseService {
+	return databaseService{}
+}
+
+var database Database
+
+func (d databaseService) Initialize() error {
 	db, err := gorm.Open("sqlite3", "./api/db/soldier_magazine.db")
 	if err != nil {
 		log.Fatal("Failed to init db: ", err)
 	}
 	db.LogMode(true)
 
-	databaseService = DatabaseService{DB: db, IsInitialized:true}
+	database = Database{DB: db, IsInitialized:true}
 
-	db.AutoMigrate(
-		&model.Magazine{},
-		&model.Gun{},
-		&model.Soldier{})
+	db.AutoMigrate(&model.Soldier{})
+
+	return nil
 }
