@@ -3,7 +3,7 @@ package api
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/mariojuzar/soldier-magazine/api/configuration"
-	"github.com/mariojuzar/soldier-magazine/api/controller/soldier"
+	"github.com/mariojuzar/soldier-magazine/api/controller"
 	"github.com/mariojuzar/soldier-magazine/api/entity/path"
 	"github.com/mariojuzar/soldier-magazine/api/entity/rest-web/response"
 	"github.com/mariojuzar/soldier-magazine/api/service"
@@ -19,7 +19,7 @@ func Run() *gin.Engine {
 	var dbSvc = service.NewDatabaseService()
 	_ = dbSvc.Initialize()
 
-	var soldierController = soldier.ControllerSoldier{
+	var soldierController = controller.SoldierController{
 		SoldierService: service.NewSoldierService(),
 	}
 

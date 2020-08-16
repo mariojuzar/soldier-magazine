@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/assert/v2"
 	"github.com/golang/mock/gomock"
-	"github.com/mariojuzar/soldier-magazine/api/controller/soldier"
+	"github.com/mariojuzar/soldier-magazine/api/controller"
 	"github.com/mariojuzar/soldier-magazine/api/entity/model"
 	"github.com/mariojuzar/soldier-magazine/api/entity/path"
 	"github.com/mariojuzar/soldier-magazine/tests/mock"
@@ -22,7 +22,7 @@ func TestCreateSoldier(t *testing.T) {
 	defer ctrl.Finish()
 
 	soldierService := mock.NewMockSoldierService(ctrl)
-	soldierCtrl := soldier.ControllerSoldier{SoldierService: soldierService}
+	soldierCtrl := controller.SoldierController{SoldierService: soldierService}
 
 	t.Run("Create Bind Failed", func(t *testing.T) {
 		req := httptest.NewRequest("POST", path.BaseUrl + path.Soldier, bytes.NewBufferString("{}"))
