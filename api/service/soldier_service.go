@@ -31,17 +31,16 @@ func (s soldierService) CreateSoldier(name string) (model.Soldier, error) {
 		}
 	}()
 
-	gun := model.Gun{
-		Name:      name,
+	magazinePacks := model.MagazinePack{
 		Magazines: []model.Magazine{},
 	}
 
-	gunValue := util.ObjectToString(gun)
+	mpValue := util.ObjectToString(magazinePacks)
 
 	soldier := model.Soldier{
 		Name:  name,
-		Gun:  gun,
-		GunValue: gunValue,
+		MagazinePacks:  magazinePacks,
+		MagazinePacksValue: mpValue,
 	}
 
 	tx.Create(&soldier)
@@ -64,6 +63,9 @@ func (s soldierService) GetSoldier(id uint) (model.Soldier, error) {
 			return model.Soldier{}, err[0]
 		}
 
+		var magazinePack model.MagazinePack
+		util.StringToObject(soldier.MagazinePacksValue, &magazinePack)
+		soldier.MagazinePacks = magazinePack
 		return soldier, nil
 	} else {
 		return model.Soldier{}, exception.NotExistException()

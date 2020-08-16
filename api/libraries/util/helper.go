@@ -17,8 +17,7 @@ func ObjectToString(obj interface{}) string {
 	return str
 }
 
-func StringToObject(data string, object interface{}) interface{} {
+func StringToObject(data string, object interface{}) {
 	var json = jsonIter.ConfigCompatibleWithStandardLibrary
 	_ = json.UnmarshalFromString(data, &object)
-	return object
 }

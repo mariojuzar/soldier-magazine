@@ -23,6 +23,10 @@ func Run() *gin.Engine {
 		SoldierService: service.NewSoldierService(),
 	}
 
+	var magazineController = controller.MagazineController{
+		MagazineService: service.NewMagazineService(),
+	}
+
 	api := engine.Group(path.BaseUrl)
 	{
 		// soldier path
@@ -31,6 +35,10 @@ func Run() *gin.Engine {
 		api.GET(path.Soldier, soldierController.GetAllSoldier)
 		api.GET(path.SoldierById, soldierController.GetSoldier)
 		api.DELETE(path.SoldierById, soldierController.DeleteSoldier)
+
+		// magazine path
+		api.POST(path.Magazine, magazineController.PutMagazine)
+		api.POST(path.MagazineLoad, magazineController.LoadMagazineRandomly)
 	}
 
 	engine.NoRoute(func(context *gin.Context) {
