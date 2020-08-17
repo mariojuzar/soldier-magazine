@@ -21,6 +21,7 @@ update dependencies:
 ## Technology
 - Go 1.13+
 - SQLlite3 
+- GORM
 - Go Gin Framework
 - Go Mock 
 
